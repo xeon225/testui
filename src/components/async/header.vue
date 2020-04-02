@@ -1,8 +1,10 @@
 <template>
-  <div class="bg-white auto-header flex-container" v-if="show">
-    <i class="baseIcon baseIcon-back" @click="back()"></i>
-    <span class="flex1 text-center">{{ title }}</span>
-    <i class="baseIcon baseIcon-more"></i>
+  <div class="auto-header">
+    <div class="bg-white  flex-container" v-if="show">
+      <i class="baseIcon baseIcon-back" @click="back()"></i>
+      <span class="flex1 text-center">{{ title }}</span>
+      <i class="baseIcon baseIcon-more"></i>
+    </div>
   </div>
 </template>
 <script>

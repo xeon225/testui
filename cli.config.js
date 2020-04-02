@@ -1,3 +1,3 @@
 module.exports = {
-  autoComponentPrefix: "ac"
+  webSiteName: "CyanMaple.design"
 };
