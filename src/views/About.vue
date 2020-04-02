@@ -1,5 +1,12 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <div>sdfdsfd</div>
 </template>
+<script>
+export default {
+  mate: {
+    headerConfig: {
+      title: "关于我们"
+    }
+  }
+};
+</script>

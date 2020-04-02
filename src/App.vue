@@ -1,13 +1,8 @@
 <template>
   <div id="app">
-    <ac-hello-world></ac-hello-world>
+    <ac-header title="sfd"></ac-header>
     <router-view />
-    <div class="fixed-bottom flex-container bg-white padding10 round">
-      <router-link to="/About" v-for="i in 5">
-        <i class="baseIcon baseIcon-right"></i>
-        <p>h</p>
-      </router-link>
-    </div>
+    <ac-footer></ac-footer>
   </div>
 </template>
 <script>
@@ -18,5 +13,11 @@ export default {
 <style lang="scss">
 body {
   background-color: #ccc;
+}
+a {
+  &,
+  &:active {
+    color: black;
+  }
 }
 </style>

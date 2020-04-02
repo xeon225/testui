@@ -5,7 +5,6 @@ componentContext.keys().forEach(key => {
     .slice(key.lastIndexOf("/") + 1, -4)
     .replace(/^\w/, w => w.toUpperCase());
   let component = componentContext(key).default;
-
   views = views.concat({
     name,
     ...component

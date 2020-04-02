@@ -6,6 +6,11 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  mate: {
+    headerConfig: {
+      show: false
+    }
+  }
 };
 </script>

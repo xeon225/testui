@@ -14,11 +14,12 @@ const routes = [
     path: `/${item.name}`,
     name: `${item.name}`,
     component: () =>
-      import(/* webpackChunkName: "[request]" */ `../views/${item.name}`)
+      import(/* webpackChunkName: "[request]" */ `../views/${item.name}`),
+    mate: item.mate
   }))
 );
 const router = new VueRouter({
+  mode: "history",
   routes
 });
-
 export default router;
