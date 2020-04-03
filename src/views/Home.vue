@@ -14,6 +14,7 @@
 <script>
 export default {
   name: "Home",
+  inject: ["$request"],
   mate: {
     headerConfig: {
       show: false
@@ -25,7 +26,8 @@ export default {
     };
   },
   created() {
-    this.$http({
+    console.log(this.$request);
+    this.$request({
       url: "http://searchweb.test.66buy.com.cn/search/platform/items",
       data: {
         words: "面膜",
