@@ -1,5 +1,5 @@
 <template>
-  <div>sdfdsfd</div>
+  <div>关于我们页面DEMO</div>
 </template>
 <script>
 export default {

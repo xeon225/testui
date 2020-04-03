@@ -1,7 +1,11 @@
 <template>
   <div class="home">
     <div class="list list-col2">
-      <div class="list-item padding10" v-for="item in productList">
+      <div
+        class="list-item padding10"
+        v-for="(item, key) in productList"
+        :key="key"
+      >
         <div class="ratio-container img-container">
           <img src="" alt="" />
         </div>

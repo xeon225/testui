@@ -2,6 +2,7 @@
   <div id="app">
     <ac-header title="sfd"></ac-header>
     <router-view />
+
     <ac-footer></ac-footer>
   </div>
 </template>

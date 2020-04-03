@@ -1,7 +1,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import autoView from "@/views/autoImport.js";
+import store from "../store";
+import _ from "lodash";
+const componentContext = require.context("../views", true, /\.vue$/, "lazy");
+let autoView = [];
+componentContext.keys().forEach(key => {
+  let name = key
+    .slice(key.lastIndexOf("/") + 1, -4)
+    .replace(/^\w/, w => w.toUpperCase());
+  let component = componentContext(key).default;
+  autoView = autoView.concat({
+    name,
+    ...component
+  });
+});
+
 Vue.use(VueRouter);
 const routes = [
   {
@@ -21,5 +35,12 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   routes
+});
+router.beforeResolve((to, from, next) => {
+  let views = to.matched.map(item => item.components.default);
+  views.forEach(view => {
+    store.commit("setHeader", _.get(view, "mate.headerConfig", {}));
+  });
+  next();
 });
 export default router;
