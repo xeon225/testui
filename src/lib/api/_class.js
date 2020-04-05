@@ -9,7 +9,7 @@ export default class Super {
     } else {
       ServiceDomain = "//" + serviceName + "." + domain.env + ".66buy.com.cn";
     }
-    _.forEach(serverList, (list, method) => {
+    _.forEach(serverList, list => {
       _.forEach(list, (url, name) => {
         this[name] = function(requestParams = {}) {
           requestParams.url = ServiceDomain + url;

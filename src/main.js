@@ -7,7 +7,6 @@ import cmui from "cyanmaple";
 import "cyanmaple/src/cyan/cmui.scss";
 import "cyanmaple/src/maple/theme/default.scss";
 import styleInit from "cyanmaple/src/maple/styleInit";
-
 //注入request
 import request from "@/lib/request";
 Vue.config.productionTip = false;
@@ -16,7 +15,7 @@ class cyanmapleDesign {
   constructor() {
     this._initCMUI();
     this._initAutoComponent();
-    this._initVM();
+    this.vm = this._initVM();
   }
   _initCMUI() {
     styleInit();
@@ -51,11 +50,13 @@ class cyanmapleDesign {
     });
   }
   _initVM() {
-    new Vue({
+    let _this = this;
+    return new Vue({
       router,
       provide() {
         return {
-          $request: request
+          $request: request,
+          $lib: _this
         };
       },
       store,
@@ -63,4 +64,4 @@ class cyanmapleDesign {
     }).$mount("#app");
   }
 }
-new cyanmapleDesign();
+export default new cyanmapleDesign();

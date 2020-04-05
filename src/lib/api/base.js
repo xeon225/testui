@@ -1,4 +1,4 @@
-import Super from "./class.js";
+import Super from "./_class.js";
 let serverList = {
   get: {
     info: "/search/platform/items"

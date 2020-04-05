@@ -18,7 +18,7 @@
 <script>
 export default {
   name: "Home",
-  inject: ["$request"],
+  inject: ["$request", "$lib"],
   mate: {
     headerConfig: {
       show: false
@@ -30,9 +30,9 @@ export default {
     };
   },
   created() {
-    console.log(this.$request);
+    console.log(this.$lib);
     this.$request({
-      url: "http://searchweb.test.66buy.com.cn/search/platform/items",
+      url: "http://midway.51tiangou.com/shopping/home/init.node",
       data: {
         words: "面膜",
         defaultMarketStoreId: "1065",
@@ -40,9 +40,13 @@ export default {
         pageCount: 10
       },
       useCache: 1
-    }).then(data => {
-      this.productList = data;
-    });
+    })
+      .then(data => {
+        this.productList = data;
+      })
+      .catch(message => {
+        this.alert(message);
+      });
   }
 };
 </script>

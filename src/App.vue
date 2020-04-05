@@ -3,7 +3,7 @@
     <ac-header title="sfd"></ac-header>
     <router-view />
 
-    <ac-footer></ac-footer>
+    <gc-footer></gc-footer>
   </div>
 </template>
 <script>
@@ -14,6 +14,11 @@ export default {
 <style lang="scss">
 body {
   background-color: #ccc;
+  #app {
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 }
 a {
   &,
