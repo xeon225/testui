@@ -1,10 +1,14 @@
 import Super from "./_class.js";
+let serviceName = "";
+let injectName = "";
 let serverList = {
-  get: {
-    info: "/search/platform/items"
-  },
-  post: {
-    info: "/search/platform/items"
+  get: {},
+  post: {}
+};
+let service = new Super(serverList, `${serviceName}`);
+export default service;
+export const SERVICE = {
+  inject(app) {
+    app.inject(`$${injectName}`, service);
   }
 };
-export default new Super(serverList, "base");

@@ -1,6 +1,6 @@
 module.exports = {
   title: 'cyanmaple_cli',
-  description: '高效的描述型框架，简单不简单',
+  description: '快速建站脚手架',
   serviceWorker:true,
   evergreen: true,
   cache:false,
@@ -9,9 +9,7 @@ module.exports = {
       '/guide/'
     ],
     nav:[
-        {text:'样式',link:'/Cyan/'},
-        {text:'组件',link:'/components/'},
-        {text:'方法',link:'/methods/'},
+        {text:'CMUI',link:'http://www.cyanmaple.design'},
         {text:'官网',items:[
                 {text:'官网',link:'http://www.bingshangroup.com'},
                 {text:'陪你读书',link:'https://www.ximalaya.com/jiaoyu/3740790/'},

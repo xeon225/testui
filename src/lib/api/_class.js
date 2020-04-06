@@ -1,28 +1,22 @@
-import domain from "javascript/libs/tg/domain";
+import config from "_config";
 import request from "../request";
 import _ from "lodash";
 export default class Super {
   constructor(serverList, serviceName) {
     let ServiceDomain;
-    if (domain.env === "online") {
-      ServiceDomain = "//" + serviceName + ".51tiangou.com";
-    } else {
-      ServiceDomain = "//" + serviceName + "." + domain.env + ".66buy.com.cn";
-    }
-    _.forEach(serverList, list => {
+    config.domain[location.host];
+    ServiceDomain = `//${serviceName}.${config.domain[location.hostname] ||
+      location.host}${config.servicePort ? ":config.servicePort" : ""}`;
+    _.forEach(serverList, (list, method) => {
       _.forEach(list, (url, name) => {
+        if (this[name]) {
+          console.error(`${serviceName}.${name}命名冲突，请更换名称`);
+          return;
+        }
         this[name] = function(requestParams = {}) {
           requestParams.url = ServiceDomain + url;
-          let { testData } = requestParams;
-          if (testData) {
-            window.maple.log(
-              `${serviceName}.${name}测试数据`,
-              JSON.parse(JSON.stringify(testData))
-            );
-            return new Promise(r => r(testData));
-          } else {
-            return request(requestParams);
-          }
+          requestParams.method = method;
+          return request(requestParams);
         };
       });
     });

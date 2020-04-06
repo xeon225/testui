@@ -114,6 +114,8 @@ const request = ({
   data = {},
   method = "get",
   useCache = "true",
+  testData,
+  testDelay = 0,
   onError
 }) => {
   if (url) {
@@ -124,18 +126,34 @@ const request = ({
     } else if (method === "get") {
       _.assign(data, { _: +new Date() });
     }
+
     //从接口读取数据
-    return Axios({
-      method,
-      url,
-      data,
-      params: method.toUpperCase() === "GET" && data,
-      useCache,
-      onError,
-      _keyString
-    });
+    return testData
+      ? new Promise(r => {
+          _.delay(() => {
+            r(testData);
+            window.maple.log(
+              `${url}测试数据`,
+              JSON.parse(JSON.stringify(testData))
+            );
+          }, testDelay);
+        })
+      : Axios({
+          method,
+          url,
+          data,
+          params: method.toUpperCase() === "GET" && data,
+          useCache,
+          onError,
+          _keyString
+        });
   } else {
     throw "request need arguments";
   }
 };
 export default request;
+export const Request = {
+  inject(app) {
+    app.inject("$request", request);
+  }
+};

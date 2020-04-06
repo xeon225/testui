@@ -1,24 +1,11 @@
 <template>
-  <div class="home">
-    <div class="list list-col2">
-      <div
-        class="list-item padding10"
-        v-for="(item, key) in productList"
-        :key="key"
-      >
-        <div class="ratio-container img-container">
-          <img src="" alt="" />
-        </div>
-        <p>{{ item.productName }}</p>
-      </div>
-    </div>
-  </div>
+  <div class="home"></div>
 </template>
 
 <script>
 export default {
   name: "Home",
-  inject: ["$request", "$lib"],
+  inject: [],
   mate: {
     headerConfig: {
       show: false
@@ -29,24 +16,6 @@ export default {
       productList: []
     };
   },
-  created() {
-    console.log(this.$lib);
-    this.$request({
-      url: "http://midway.51tiangou.com/shopping/home/init.node",
-      data: {
-        words: "面膜",
-        defaultMarketStoreId: "1065",
-        startNum: 10,
-        pageCount: 10
-      },
-      useCache: 1
-    })
-      .then(data => {
-        this.productList = data;
-      })
-      .catch(message => {
-        this.alert(message);
-      });
-  }
+  created() {}
 };
 </script>
