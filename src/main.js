@@ -72,7 +72,6 @@ class cyanmapleDesign {
     } else {
       // todo 当调用此处时，constructor 中的 injection 还未初始化
       this.injections || (this.injections = Object.create(null));
-
       Object.defineProperty(this.injections, name, {
         enumerable: true,
         get() {

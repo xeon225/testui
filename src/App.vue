@@ -2,8 +2,8 @@
   <div id="app">
     <ac-header title="sfd"></ac-header>
     <router-view />
-
-    <gc-footer></gc-footer>
+    <div ref="scrollPotin"></div>
+    <!-- <gc-footer></gc-footer> -->
   </div>
 </template>
 <script>

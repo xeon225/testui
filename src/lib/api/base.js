@@ -1,8 +1,10 @@
 import Super from "./_class.js";
-let serviceName = "";
-let injectName = "";
+let serviceName = "searchweb";
+let injectName = "searchweb";
 let serverList = {
-  get: {},
+  get: {
+    items: "/search/platform/items"
+  },
   post: {}
 };
 let service = new Super(serverList, `${serviceName}`);
