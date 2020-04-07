@@ -1,6 +1,6 @@
 module.exports = {
   title: 'cyanmaple_cli',
-  description: '快速建站脚手架',
+  description: 'CMUI脚手架：快点干活，早点下班',
   serviceWorker:true,
   evergreen: true,
   cache:false,
