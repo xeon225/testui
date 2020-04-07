@@ -16,7 +16,6 @@ export default {
     this.observerLazyLoad = new IntersectionObserver(entries => {
       let [entrie] = entries;
       let _this = this;
-
       if (this.loading) {
         return;
       }
