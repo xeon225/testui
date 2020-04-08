@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 import store from "../store";
 import _ from "lodash";
 const componentContext = require.context("../views", true, /\.vue$/, "lazy");
@@ -14,13 +13,12 @@ componentContext.keys().forEach(key => {
     ...component
   });
 });
-
+console.log(autoView);
 Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    redirect: "/index"
   }
 ].concat(
   autoView.map(item => ({
