@@ -3,16 +3,13 @@
     <div class="bg-white  flex-container" v-if="show">
       <i class="baseIcon baseIcon-back" @click="back()"></i>
       <span class="flex1 text-center">{{ title }}</span>
-
-      <dropdown><i class="baseIcon baseIcon-more"></i></dropdown>
+      <router-link to="/"><i class="baseIcon baseIcon-home"></i></router-link>
     </div>
   </div>
 </template>
 <script>
 import { mapState } from "vuex";
-import dropdown from "./dorpdown";
 export default {
-  components: { dropdown },
   methods: {
     back() {
       this.$router.back();

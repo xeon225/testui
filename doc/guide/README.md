@@ -210,4 +210,18 @@ CMUI的一大特点是动态样式的应用，比如为一个DOM节点添加名�
 |padding{pos}{num}|设置某个方向上的margin，{pos}的值为t,r,b,l,h,v六个值|paddingt20
 |{pos}{num}|在非相对定位时设置某个方向上的距离{pos}的值为top,right,left,bottom四个值|top-30
 |{pos}-n{num}|在非相对定位时设置某个方向上的**负**距离{pos}的值为top,right,left,bottom四个值|bottom-n30
-## 多页面应用
+## 顶部head栏
+CyanMapleCLI内置了ac-header组件用于设置页面的head栏，并在APP.VUE内进行引用，你只需要为Vue文件设置meta属性添加headerConfig属性，就可以非常方便的来对当前页面设置head的显示。
+```vue
+<script>
+// src/views/about.vue 示例 
+export default {
+  mate: {
+    headerConfig: {
+      title: "关于我们",//即使将show设置为false，依然可以通过该属性来设置document.title的显示
+      show:true//默认为true，可以省略，如果需要隐藏head可以设置为false
+    }
+  }
+};
+</script>
+```

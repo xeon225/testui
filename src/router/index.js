@@ -6,9 +6,8 @@ import _ from "lodash";
 const componentContext = require.context("../views", true, /\.vue$/, "lazy");
 let autoView = [];
 componentContext.keys().forEach(key => {
-  let name = key
-    .slice(key.lastIndexOf("/") + 1, -4)
-    .replace(/^\w/, w => w.toUpperCase());
+  let name = key.slice(key.lastIndexOf("/") + 1, -4);
+  // .replace(/^\w/, w => w.toUpperCase());
   let component = componentContext(key).default;
   autoView = autoView.concat({
     name,
