@@ -6,7 +6,7 @@
     />
 
     <div class="bg-white radius4 padding20 margin20">
-      <router-link to="/about"> 关于我们 </router-link>
+      <router-link to="/about"> header设置案例 </router-link>
     </div>
     <div class="bg-white radius4 padding20 margin20">
       <router-link to="/scrollLoad"> 滚动加载案例 </router-link>
