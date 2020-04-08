@@ -140,10 +140,74 @@ let serverList = {
 };
 ```
 
+## 滚动加载
+
+CyanMapleCLI内置了全局的scrollLoad组件用于数据的滚动加载，你只需要将滚动加载的模块放置在gc-scroll-load组件内，并设置handler为加载数据的函数即可。需要注意的是在加载函数内你需要返回一个promise。如果需要停止滚动加载只需要返回Promise.reject()即可。
+```vue
+<template>
+  <div>
+    <gc-scroll-load :handler="getproduct">
+      <div v-for="(item, index) in productList">
+        {{ item.productName }}
+      </div>
+    </gc-scroll-load>
+  </div>
+</template>
+<script>
+export default {
+  inject: ["$request"],
+  data() {
+    return {
+      productList: [],
+      startNum: 0,
+      pageCount: 10
+    };
+  },
+  created() {},
+  methods: {
+    getproduct() {
+      return this.$request({
+        data:{
+          startNum: this.startNum,
+        }
+      }).then(data => {
+          this.productList = this.productList.concat(data);
+          this.startNum += 10;//每次调用的时候startNum增加10
+          if (this.productList.length > 100) {//当商品数量大于100的时候停止滚动加载
+            return Promise.reject();
+          }
+        });
+    }
+  }
+};
+</script>
+```
 ## 功能注入
-CyanMapleCLI的业务逻辑部分使用依赖注入来完成，
+CyanMapleCLI的业务逻辑部分使用依赖注入来完成，并且会扫描src/lib下的带有注入接口的JS文件来进行注入，如果你需要增加更多的功能，只需要添加一个JS文件到src/lib文件夹下并按照下面的结构提供注入接口即可。
+
+```javascript
+//request模块的注入DEMO
+export default request;
+export const Request = {
+  inject(app) {
+    app.inject("$request", request);
+  }
+};
+```
+
 ## 风格与主题设置
+CMUI内置了一些色彩和基础尺寸[点击查看](http://www.cyanmaple.design/cyanMapleDoc/Cyan/color_and_size.html)，虽然我们参考了大量的案例给出了最合适的设置，但是依旧不能保证完全适合你的风格，因此，你可以通过自定的方式来修改这些设置。
 
+src/style/_variables.scss文件是整个项目的SCSS变量配置文件。在这里你可以修改CMUI的基础颜色和基础尺寸来满足你的项目需要，你也可以定义更多的变量以便在项目中统一引用，所有和CMUI相关的变量都做了明确的注释
 ## 自动样式应用
-
+CMUI的一大特点是动态样式的应用，比如为一个DOM节点添加名为padding15的class，那么在移动端下会自动添加对应750设计稿的15像素内边距并根据设备的不同自动缩放，在PC下会直接添加15像素的内边距。相同的特性已经在CyanMapleCLI中内置，你可以直接使用，详细规则如下
+|类名|作用|exp|
+|---|---|---|
+|margin{num}|设置margin|margin20
+|margin{pos}{num}|设置某个方向上的margin，{pos}的值为t,r,b,l,h,v六个值|marginr20
+|margin{pos}-n{num}|设置某个方向上的**负**margin，{pos}的值为t,r,b,l,h,v六个值|marginr-n20
+|padding{num}|设置padding|padding20
+|padding{pos}{num}|设置某个方向上的margin，{pos}的值为t,r,b,l,h,v六个值|paddingt20
+|{pos}{num}|在非相对定位时设置某个方向上的距离{pos}的值为top,right,left,bottom四个值|top-30
+|{pos}-n{num}|在非相对定位时设置某个方向上的**负**距离{pos}的值为top,right,left,bottom四个值|bottom-n30
 ## 多页面应用

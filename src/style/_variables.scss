@@ -1,0 +1,43 @@
+//CMUI中的彩色系统，应用于背景颜色 按钮颜色 标签颜色 表单颜色 文字颜色
+$colorList:(
+	'red': #ab7c7b,
+	'orange': #ff9800,
+	'yellow': #ff6705,
+	'green': #2eb252,
+	'coffee': #853f3a,
+	'blue': #25aaff,
+	'purple': #7000C8
+) ;
+//CMUI中的灰度系统，应用于背景颜色 文字颜色
+$grayList:(
+	'black': #000,
+	'darker': #222,
+	'dark': #666,
+	'gray':#8a8a8a,
+	'light': #999,
+	'lighter': #ccc,
+	'white': #fff
+) ;
+//CMUI中的按钮尺寸列表，可以自由添加和修改，注意base是可以修改但必须保留的，其他的可以随意删除或添加
+$btn-size-list:(//括号内的三个值分别代表高度 左右padding 文字大小
+	'base':(36px,15px,16px),
+	'small':(28px,15px,14px),
+	'big':(44px,15px,16px)
+) ;
+//CMUI中的标签尺寸列表，可以自由添加和修改，注意base是可以修改但必须保留的，其他的可以随意删除或添加
+$badge-size-list:(//括号内的三个值分别代表高度 左右padding 文字大小
+	'base':(20px,10px,12px),
+	'small':(16px,5px,10px),
+	'big':(24px,10px,13px)
+) ;
+//下面的这些变量是CMUI内部使用的 通常情况下你是不需要修改的
+//base padding
+$padding-base-vertical:     6px ;
+$padding-base-horizontal:   12px ;
+//font
+$font-family-base: "Helvetica Neue","Helvetica","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif ;
+$font-size-base:     14px ;
+$line-height-base:   20/14 ;
+//border
+$border-radius-base:        4px ;
+$border-color-default:      #eee ;

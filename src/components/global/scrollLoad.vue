@@ -24,10 +24,16 @@ export default {
           entrie.target.getBoundingClientRect().top <= entrie.rootBounds.height
         ) {
           _this.loading = true;
-          _this.handler().then(() => {
-            _this.loading = false;
-            _this.$nextTick(load);
-          });
+          let handlerResult = _this.handler();
+          handlerResult.then &&
+            handlerResult
+              .then(() => {
+                _this.loading = false;
+                _this.$nextTick(load);
+              })
+              .catch(() => {
+                _this.loading = false;
+              });
         }
       })();
     });

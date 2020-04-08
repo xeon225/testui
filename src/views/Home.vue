@@ -33,7 +33,7 @@ export default {
       return this.$searchweb
         .items({
           data: {
-            words: "面膜",
+            words: "酸奶",
             defaultMarketStoreId: "1065",
             startNum: this.startNum,
             pageCount: this.pageCount
@@ -42,7 +42,7 @@ export default {
         .then(data => {
           this.productList = this.productList.concat(data);
           this.startNum += 10;
-          if (this.productList.length > 100) {
+          if (this.productList.length > 100 || !data.length) {
             return Promise.reject();
           }
         });
