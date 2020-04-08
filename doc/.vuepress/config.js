@@ -1,11 +1,11 @@
 module.exports = {
   title: 'cyanmaple_cli',
   description: 'CMUI脚手架：快点干活，早点下班',
+  base:'/cli/',
   serviceWorker:true,
   evergreen: true,
   cache:false,
   themeConfig:{
-    base:'/cli/',
     sidebar: [
       '/guide/'
     ],
