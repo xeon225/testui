@@ -1,17 +1,16 @@
 <template>
   <div>
-    <gc-scroll-load :handler="getProduct" class="padding10 bg-white">
+    <gc-scroll-load :handler="getProduct" class="padding10">
       <div class="list list-col2">
         <div class="list-item padding10" v-for="(item, index) in productList">
           <div class="bg-white radius4 overflow-h">
             <div class="ratio-container">
               <img :src="`https:${item}`" alt="" />
             </div>
-            <div class="paddingh10">
-              <p class="fs-12 text-dark text-limit2 paddingv5">
-                第{{ index }}张图片
-              </p>
-            </div>
+
+            <p class="fs-12 text-dark text-limit2 padding10 text-center">
+              第{{ index }}张图片
+            </p>
           </div>
         </div>
       </div>

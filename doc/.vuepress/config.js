@@ -5,6 +5,7 @@ module.exports = {
   evergreen: true,
   cache:false,
   themeConfig:{
+    base:'/cli/',
     sidebar: [
       '/guide/'
     ],
