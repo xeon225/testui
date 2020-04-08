@@ -6,6 +6,7 @@ module.exports = {
   cache:false,
   themeConfig:{
     base:'/cli/',
+    dest:'../cmui',
     sidebar: [
       '/guide/'
     ],
