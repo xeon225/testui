@@ -11,7 +11,7 @@ export default {
 </script>
 <style lang="scss">
 body {
-  background-color: #ccc;
+  background-color: #eee;
   #app {
     max-width: 100vw;
     min-height: 100vh;

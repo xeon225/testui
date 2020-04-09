@@ -1,5 +1,6 @@
 <template>
   <div>
+    <gc-back-top></gc-back-top>
     <gc-scroll-load :handler="getProduct" class="padding10">
       <div class="list list-col2">
         <div class="list-item padding10" v-for="(item, index) in productList">

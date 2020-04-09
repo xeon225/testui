@@ -22,7 +22,7 @@ module.exports = {
         .use("sass-resources-loader")
         .loader("sass-resources-loader")
         .options({
-          resources: "./src/style/_variables.scss"
+          resources: ["./src/style/_variables.scss", "./src/style/_extend.scss"]
         });
     };
     ofs.forEach(type => {
