@@ -34,11 +34,7 @@ Axios.interceptors.request.use(
       resolve(config);
     }).then(config => {
       // 序列化
-      if (
-        config.method === "post" ||
-        config.method === "put" ||
-        config.method === "delete"
-      ) {
+      if (config.method === "post" || config.method === "put" || config.method === "delete") {
         config.data = qs.stringify(config.data);
       }
       return config;
@@ -109,15 +105,7 @@ function setCacheDate(key, data, level) {
 function getCacheDate(key) {
   return requestData.get(key) || sessionData(key) || localData(key);
 }
-const request = ({
-  url,
-  data = {},
-  method = "get",
-  useCache = "true",
-  testData,
-  testDelay = 0,
-  onError
-}) => {
+const request = ({ url, data = {}, method = "get", useCache = "true", testData, testDelay = 0, onError }) => {
   if (url) {
     const _keyString = qs.stringify({ url, method, data });
     let cacheData = getCacheDate(_keyString);
@@ -132,10 +120,7 @@ const request = ({
       ? new Promise(r => {
           _.delay(() => {
             r(testData);
-            window.maple.log(
-              `${url}测试数据`,
-              JSON.parse(JSON.stringify(testData))
-            );
+            window.maple.log(`${url}测试数据`, JSON.parse(JSON.stringify(testData)));
           }, testDelay);
         })
       : Axios({

@@ -9,9 +9,7 @@
               <img :src="`https:${item}`" alt="" />
             </div>
 
-            <p class="fs-12 text-dark text-limit2 padding10 text-center">
-              第{{ index }}张图片
-            </p>
+            <p class="fs-12 text-dark text-limit2 padding10 text-center">第{{ index }}张图片</p>
           </div>
         </div>
       </div>

@@ -17,23 +17,14 @@ function _initCMUI() {
 function _initAutoComponent() {
   // 导入自动组件，分成全局组件和异步组件
   const globalContext = require.context("./components/global", true, /\.vue$/);
-  const asyncContext = require.context(
-    "./components/async",
-    true,
-    /\.vue$/,
-    "lazy"
-  );
+  const asyncContext = require.context("./components/async", true, /\.vue$/, "lazy");
   globalContext.keys().forEach(key => {
-    let name = key
-      .slice(key.lastIndexOf("/") + 1, -4)
-      .replace(/^\w/, w => w.toUpperCase());
+    let name = key.slice(key.lastIndexOf("/") + 1, -4).replace(/^\w/, w => w.toUpperCase());
     let component = globalContext(key).default;
     Vue.component("gc" + name, component);
   });
   asyncContext.keys().forEach(key => {
-    let name = key
-      .slice(key.lastIndexOf("/") + 1, -4)
-      .replace(/^\w/, w => w.toUpperCase());
+    let name = key.slice(key.lastIndexOf("/") + 1, -4).replace(/^\w/, w => w.toUpperCase());
     let component = asyncContext(key);
     Vue.component("ac" + name, () => component);
   });

@@ -1,21 +1,13 @@
 <template>
   <div class="bg-white flex-container c_cell" v-on="$listeners">
-    <i
-      v-if="mainIcon && !$slots.mainIcon"
-      class="baseIcon bg-blue main_icon"
-      :class="`baseIcon-${mainIcon}`"
-    ></i>
+    <i v-if="mainIcon && !$slots.mainIcon" class="baseIcon bg-blue main_icon" :class="`baseIcon-${mainIcon}`"></i>
     <slot v-else name="mainIcon"></slot>
     <div class="flex1 content">
       <p class="title" v-text="title"></p>
       <p class="sub" v-if="$slots.default"><slot></slot></p>
     </div>
     <div class="ext"><slot name="ext"></slot></div>
-    <i
-      class="baseIcon opt_icon"
-      :class="`baseIcon-${optIcon}`"
-      v-if="optIcon && !$slots.optIcon"
-    ></i>
+    <i class="baseIcon opt_icon" :class="`baseIcon-${optIcon}`" v-if="optIcon && !$slots.optIcon"></i>
     <slot v-else name="optIcon"></slot>
   </div>
 </template>

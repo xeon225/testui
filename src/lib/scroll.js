@@ -45,8 +45,7 @@ let scroll = callback => {
    * */
   disabled = disabled => {
     if (disabled) {
-      body.dataset.overflowState =
-        window.getComputedStyle(body).overflow || "visible";
+      body.dataset.overflowState = window.getComputedStyle(body).overflow || "visible";
 
       body.style.overflow = "hidden";
     } else {

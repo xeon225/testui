@@ -5,8 +5,7 @@ export default class Super {
   constructor(serverList, serviceName) {
     let ServiceDomain;
     config.domain[location.host];
-    ServiceDomain = `//${serviceName}.${config.domain[location.hostname] ||
-      location.host}${config.servicePort ? ":config.servicePort" : ""}`;
+    ServiceDomain = `//${serviceName}.${config.domain[location.hostname] || location.host}${config.servicePort ? ":config.servicePort" : ""}`;
     _.forEach(serverList, (list, method) => {
       _.forEach(list, (url, name) => {
         if (this[name]) {

@@ -290,9 +290,7 @@ class HandlerQueue extends Base {
    *          若 handler 是 HandlerQueue 类型，将会执行其 compose 方法
    * */
   compose(...args) {
-    return this._handlers.reduceRight(
-      this._funcExecutor("compose", null, args)
-    );
+    return this._handlers.reduceRight(this._funcExecutor("compose", null, args));
   }
   /**
    * @summary 指定上下文，返回执行 handler 队列的方法集合
@@ -342,9 +340,7 @@ class HandlerQueue extends Base {
        *          若 handler 是 HandlerQueue 类型，将会执行其 compose 方法
        * */
       compose: (...args) => {
-        return this._handlers.reduceRight(
-          this._funcExecutor("compose", context, args)
-        );
+        return this._handlers.reduceRight(this._funcExecutor("compose", context, args));
       },
       promise: {
         /**
@@ -365,10 +361,7 @@ class HandlerQueue extends Base {
          *          若 handler 是 HandlerQueue 类型，将会执行其 line 方法
          * */
         line: (...args) => {
-          return this._handlers.reduce(
-            this._lineExecutorPromise(context, args),
-            Promise.resolve()
-          );
+          return this._handlers.reduce(this._lineExecutorPromise(context, args), Promise.resolve());
         },
         /**
          * @summary 指定在 context 的上下文中，以 promise 串行的方式执行队列中的全部 handler，即前一个 handler 的返回结果作为下一个 handler 的参数
@@ -379,9 +372,7 @@ class HandlerQueue extends Base {
          *          若 handler 是 HandlerQueue 类型，将会执行其 pipe 方法
          * */
         pipe: (...args) => {
-          return this._handlers.reduce(
-            this._funcExecutorPromise("pipe", context, args)
-          );
+          return this._handlers.reduce(this._funcExecutorPromise("pipe", context, args));
         },
         /**
          * @summary 指定在 context 的上下文中，为 pipe 方法的逆序，以 promise 串行的方式执行队列中的全部 handler，即前一个 handler 的返回结果作为下一个 handler 的参数
@@ -392,9 +383,7 @@ class HandlerQueue extends Base {
          *          若 handler 是 HandlerQueue 类型，将会执行其 compose 方法
          * */
         compose: (...args) => {
-          return this._handlers.reduceRight(
-            this._funcExecutorPromise("compose", context, args)
-          );
+          return this._handlers.reduceRight(this._funcExecutorPromise("compose", context, args));
         }
       }
     };
@@ -425,10 +414,7 @@ class HandlerQueue extends Base {
        *          若 handler 是 HandlerQueue 类型，将会执行其 line 方法
        * */
       line: (...args) => {
-        return this._handlers.reduce(
-          this._lineExecutorPromise(null, args),
-          Promise.resolve()
-        );
+        return this._handlers.reduce(this._lineExecutorPromise(null, args), Promise.resolve());
       },
       /**
        * @summary 以 promise 串行的方式执行队列中的全部 handler，即前一个 handler 的返回结果作为下一个 handler 的参数
@@ -439,9 +425,7 @@ class HandlerQueue extends Base {
        *          若 handler 是 HandlerQueue 类型，将会执行其 pipe 方法
        * */
       pipe: (...args) => {
-        return this._handlers.reduce(
-          this._funcExecutorPromise("pipe", null, args)
-        );
+        return this._handlers.reduce(this._funcExecutorPromise("pipe", null, args));
       },
       /**
        * @summary 为 pipe 方法的逆序，以 promise 串行的方式执行队列中的全部 handler，即前一个 handler 的返回结果作为下一个 handler 的参数
@@ -452,9 +436,7 @@ class HandlerQueue extends Base {
        *          若 handler 是 HandlerQueue 类型，将会执行其 compose 方法
        * */
       compose: (...args) => {
-        return this._handlers.reduceRight(
-          this._funcExecutorPromise("compose", null, args)
-        );
+        return this._handlers.reduceRight(this._funcExecutorPromise("compose", null, args));
       }
     };
   }

@@ -25,10 +25,7 @@ export default {
           return;
         }
         (function load() {
-          if (
-            entrie.target.getBoundingClientRect().top <=
-            entrie.rootBounds.height + +_this.dis
-          ) {
+          if (entrie.target.getBoundingClientRect().top <= entrie.rootBounds.height + +_this.dis) {
             _this.loading = true;
             let handlerResult = _this.handler();
             handlerResult.then &&

@@ -1,11 +1,6 @@
 <template>
   <div class="">
-    <gc-cell
-      title="以下色彩来源于uigradients"
-      @click="change()"
-      class="marginh20 margint20 radius5"
-      >一个专注于渐变色彩搭配的网站</gc-cell
-    >
+    <gc-cell title="以下色彩来源于uigradients" @click="change()" class="marginh20 margint20 radius5">一个专注于渐变色彩搭配的网站</gc-cell>
     <div class="list list-col3 padding10">
       <div class="list-item padding10" v-for="(i, index) in listName" :key="i">
         <div class="ratio-container" :class="`gradient_${i}`"></div>

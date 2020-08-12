@@ -1,9 +1,5 @@
 <template>
-  <div
-    class=" clearfix login "
-    :class="`gradient_${gradientNumber}`"
-    style="height:100vh"
-  >
+  <div class=" clearfix login " :class="`gradient_${gradientNumber}`" style="height:100vh">
     <div class="topIcon" @click="gradientNumber = (Math.random() * 334) | 0">
       K
     </div>
@@ -14,12 +10,7 @@
       <cmui-form-item label="密码">
         <cmui-input target-class="reverse" type="password"></cmui-input>
       </cmui-form-item>
-      <span
-        class="btn block  margint50 "
-        style="background:transparent"
-        @click="login"
-        >登录</span
-      >
+      <span class="btn block  margint50 " style="background:transparent" @click="login">登录</span>
     </cmui-form>
   </div>
 </template>

@@ -24,8 +24,7 @@ const routes = [
   autoView.map(item => ({
     path: `/${item.name}`,
     name: `${item.name}`,
-    component: () =>
-      import(/* webpackChunkName: "[request]" */ `../views/${item.name}`),
+    component: () => import(/* webpackChunkName: "[request]" */ `../views/${item.name}`),
     mate: item.mate
   }))
 );

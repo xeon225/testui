@@ -20,8 +20,7 @@
 import _ from "lodash";
 
 const cubic = value => Math.pow(value, 3);
-const easeInOutCubic = value =>
-  value < 0.5 ? cubic(value * 2) / 2 : 1 - cubic((1 - value) * 2) / 2;
+const easeInOutCubic = value => (value < 0.5 ? cubic(value * 2) / 2 : 1 - cubic((1 - value) * 2) / 2);
 
 export default {
   props: {
@@ -87,14 +86,11 @@ export default {
       const el = this.el;
       const beginTime = Date.now();
       const beginValue = el.scrollTop;
-      const rAF =
-        window.requestAnimationFrame || (func => setTimeout(func, 16));
+      const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16));
       const frameFunc = () => {
         const progress = (Date.now() - beginTime) / 500;
         if (progress < 1) {
-          el.scrollTop =
-            (beginValue - targetValue) * (1 - easeInOutCubic(progress)) +
-            targetValue;
+          el.scrollTop = (beginValue - targetValue) * (1 - easeInOutCubic(progress)) + targetValue;
           rAF(frameFunc);
         } else {
           el.scrollTop = targetValue;
