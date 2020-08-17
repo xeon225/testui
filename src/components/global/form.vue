@@ -1,7 +1,7 @@
 <script>
 import _ from "lodash";
-const needOptions = ["checkbox", "radio"];
-const ArrayProp = [];
+const needOptions = ["checkbox", "radio", "select"];
+const ArrayProp = ["checkbox"];
 const BooleanProp = [];
 const NumberProp = [];
 let checkSupport = i => !!(_.isFunction(i) ? i() : i);
@@ -36,7 +36,11 @@ export default {
         case item.type === "checkbox":
           input = h(
             `cmui-${item.type}-group`,
-            _.merge(dpo(item), {}),
+            _.merge(dpo(item), {
+              class: {
+                group: item.group
+              }
+            }),
             _.map(_.isFunction(item.options) ? item.options() : item.options, (value, label) => {
               let extprop = {};
               if (_.isPlainObject(value)) {
@@ -53,6 +57,21 @@ export default {
             })
           );
           break;
+        case item.type === "select":
+          input = h(
+            "cmui-select",
+            _.merge(dpo(item), {
+              props: {
+                data: _.map(_.isFunction(item.options) ? item.options() : item.options, (value, label) => {
+                  if (_.isPlainObject(value)) {
+                    ({ value, label } = value);
+                  }
+                  return { text: label, value };
+                })
+              }
+            })
+          );
+          break;
         default:
           input = h("cmui-input", _.merge(dpo(item), {}));
       }
@@ -61,7 +80,7 @@ export default {
         "cmui-form-item",
         {
           props: item,
-          class: `item__${item.type}`
+          class: `item__${item.type || "input"}`
         },
         children
       );
