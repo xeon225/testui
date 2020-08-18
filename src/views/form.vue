@@ -1,10 +1,12 @@
 <template>
   <div class="padding20 radius">
-    <gc-form :data="data" v-model="model"></gc-form>
-    {{ model }}
+    <gc-form :data="data" v-model="model" label-width="100px" ref="form" class="padding20 bg-white shadow radius3 marginb30"></gc-form>
+    <div class="btn blue block radius4" @click="check">submit</div>
   </div>
 </template>
 <script>
+import * as validator from "@/lib/validator.js";
+let maple = window.maple;
 export default {
   mate: {
     headerConfig: {
@@ -13,10 +15,22 @@ export default {
   },
   data() {
     return {
-      cityList: ["1", "2", "3"],
-      btnValue: ["2"],
       data: [
-        { label: "姓名", prop: "name", props: { append: "sdf", prepend: "asdf" } },
+        { label: "姓名", prop: "name", rules: [validator.typeCheck("input", "姓名不能为空")] },
+        { label: "手机号", prop: "phone", rules: [validator.phone()] },
+        { label: "邮箱", prop: "email", rules: [validator.email()] },
+        {
+          label: "部门",
+          prop: "department",
+          type: "select",
+          options: [
+            { label: "技术部", value: "1" },
+            { label: "设计部", value: "2" },
+            { label: "产品部", value: "3" },
+            { label: "业务部", value: "4" }
+          ],
+          rules: [validator.typeCheck("select", "必须选择部门")]
+        },
         {
           label: "性别",
           prop: "sex",
@@ -25,41 +39,33 @@ export default {
             { label: "男", value: 0 },
             { label: "女", value: 1 }
           ],
-          props: { targetClass: "btn radius3 reverse" },
-          group: true
+          rules: [validator.typeCheck("radio", "性别不能为空")],
+          props: { targetClass: "small square" }
         },
         {
-          label: "热门城市",
-          options: [
-            { label: "北京", value: 0 },
-            { label: "上海", value: 1 },
-            { label: "大连", value: 2 }
-          ],
-          prop: "hotCity",
+          label: "办公用品",
+          prop: "tools",
           type: "checkbox",
-          group: true,
-          props: { targetClass: "btn radius3" }
-        },
-        {
-          label: "department",
-          prop: "department",
-          type: "select",
-          props: { multiple: true },
           options: [
-            { label: "技术", value: 0 },
-            { label: "业务", value: 1 },
-            { label: "产品", value: 2 }
-          ]
+            { label: "电脑", value: 0 },
+            { label: "桌子", value: 1 },
+            { label: "椅子", value: 2 },
+            { label: "文具", value: 3 }
+          ],
+          rules: [validator.typeCheck("checkbox", "至少选择一项")],
+          props: { targetClass: "small switch" }
         }
       ],
-      model: { sex: 1, hotCity: [2], department: 2 }
+      model: {}
     };
   },
-  created() {
-    setTimeout(() => {
-      this.data[3].options.push({ label: "ui", value: 3 });
-    }, 2000);
-  }
+  methods: {
+    check() {
+      let rs = this.$refs.form.validate();
+      rs && maple.alert("验证通过");
+    }
+  },
+  created() {}
 };
 </script>
 <style lang="scss" scoped></style>

@@ -72,6 +72,9 @@ export default {
             })
           );
           break;
+        case item.type === "textarea":
+          input = h("cmui-textarea", _.merge(dpo(item), {}));
+          break;
         default:
           input = h("cmui-input", _.merge(dpo(item), {}));
       }
@@ -85,27 +88,42 @@ export default {
         children
       );
     });
-    let form = h("cmui-form", {}, formItems);
+    let form = h(
+      "cmui-form",
+      {
+        props: {
+          labelWidth: this.labelWidth,
+          model: this.selfModel,
+          rules: this.selfRules,
+          inline: this.inline,
+          disabled: _.isFunction(this.disabled) ? this.disabled() : this.disabled
+        },
+        ref: "form"
+      },
+      formItems
+    );
     return form;
   },
   props: {
     labelWidth: { type: String, default: "80px" },
-    inputWidth: { type: String, default: "" },
     data: { type: Array, default: () => [] },
     value: { type: Object, default: () => ({}) },
-    inline: { type: Boolean, default: false },
     disabled: { type: [Boolean, Function], default: false }
   },
   data() {
     return {
       defaultData: {},
-      model: {},
-      categoryData: [],
-      categoryValueList: [],
-      valueWatchTag: true
+      model: {}
     };
   },
   computed: {
+    selfRules() {
+      return _(this.data)
+        .filter("rules")
+        .keyBy("prop")
+        .mapValues("rules")
+        .value();
+    },
     selfModel: {
       get() {
         let rs = _(this.data)
@@ -144,6 +162,13 @@ export default {
         }
         fnRS !== false && this.$emit("input", model);
       }
+    }
+  },
+  methods: {
+    validate() {
+      let rs;
+      this.$refs.form.validate(valid => (rs = valid));
+      return rs;
     }
   },
   watch: {
