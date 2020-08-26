@@ -23,7 +23,8 @@ export default {
         { path: "/cell", title: "cell", sub: "一个经常在列表页面用到的通用样式" },
         { path: "/gradient", title: "渐变", sub: "这里展示了CMUI中自带的334种渐变" },
         { path: "/login", title: "系统登录", sub: "通用系统登录DEMO点击K可以切换背景" },
-        { path: "/form", title: "表单组件", sub: "使用JSON快速完成表单布局" }
+        { path: "/form", title: "表单组件", sub: "使用JSON快速完成表单布局" },
+        { path: "/treeSelect", title: "树状选择", sub: "使用JSON快速完成表单布局" }
       ]
     };
   }
