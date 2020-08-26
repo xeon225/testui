@@ -12,6 +12,11 @@ export default {
       props: {
         value: _this.selfModel[item.prop],
         disabled: item.disabled,
+
+        // ..._.mergeWith(item.props, { targetClass: _this.targetClass }, (a, b) => {
+        //   console.log(a, b);
+        //   return a + b;
+        // })
         ...item.props
       },
       on: {
@@ -98,6 +103,7 @@ export default {
           inline: this.inline,
           disabled: _.isFunction(this.disabled) ? this.disabled() : this.disabled
         },
+        class: "JsonForm",
         ref: "form"
       },
       formItems
@@ -108,7 +114,8 @@ export default {
     labelWidth: { type: String, default: "80px" },
     data: { type: Array, default: () => [] },
     value: { type: Object, default: () => ({}) },
-    disabled: { type: [Boolean, Function], default: false }
+    disabled: { type: [Boolean, Function], default: false },
+    targetClass: { type: String, default: "" }
   },
   data() {
     return {
@@ -185,3 +192,40 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.JsonForm {
+  // padding20 bg-white shadow radius3 marginb30
+  background-color: white;
+  border-color: #00000017;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  border-radius: 3px;
+  margin-bottom: 0.4rem;
+  padding: 0.266667rem;
+  /deep/ {
+    .cmui-form-item {
+      &:not(:last-child) {
+        border-bottom: 1px solid #ebedf0;
+      }
+      margin: 0 !important;
+      padding: 5px 0;
+      &.item__radio,
+      &.item__checkbox {
+        display: flex;
+        justify-content: space-between;
+        .cmui-form-item__content {
+          margin-left: 0 !important;
+        }
+      }
+      .cmui-form-item__error {
+        position: relative;
+        top: initial;
+        left: initial;
+      }
+      input[type="text"],
+      select {
+        border: none;
+      }
+    }
+  }
+}
+</style>
