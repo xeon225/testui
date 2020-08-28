@@ -7,8 +7,23 @@ module.exports = {
   cache:false,
   themeConfig:{
     sidebar: [
-      '/guide/'
+      // '/guide/'
+      {
+        title:'使用说明书',
+        path:'/guide/',
+        // children:['/guide/component.md']
+      },
+      {
+        title:'脚手架内置组件',
+        path:'/component/',
+        sidebarDepth: 2,
+        children:[
+          '/component/form.md',
+          '/component/backTop.md',
+        ]
+      }
     ],
+    // sidebar: 'auto',
     nav:[
         {text:'CMUI',link:'http://www.cyanmaple.design'},
         {text:'官网',items:[
