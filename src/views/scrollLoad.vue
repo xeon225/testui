@@ -6,7 +6,8 @@
         <div class="list-item padding10" v-for="(item, index) in productList">
           <div class="bg-white radius4 overflow-h">
             <div class="ratio-container">
-              <img :src="`https:${item}`" alt="" />
+              <!-- <img :src="`https:${item}`" alt="" /> -->
+              <ac-random-pic></ac-random-pic>
             </div>
 
             <p class="fs-12 text-dark text-limit2 padding10 text-center">第{{ index }}张图片</p>

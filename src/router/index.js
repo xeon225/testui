@@ -39,6 +39,7 @@ const router = new VueRouter({
     { path: "/", redirect: "/index" },
     ...autoPage.map(i => {
       let routerPath = i.path.slice(10, -4);
+      console.log(routerPath);
       return {
         path: `/${routerPath}`,
         name: _.camelCase(routerPath),

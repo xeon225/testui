@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white flex-container c_cell" v-on="$listeners">
+  <div class="bg-white flex-container c_cell" v-on="$listeners" @click="clickEvent">
     <i v-if="mainIcon && !$slots.mainIcon" class="baseIcon bg-blue main_icon" :class="`baseIcon-${mainIcon}`"></i>
     <slot v-else name="mainIcon"></slot>
     <div class="flex1 content">
@@ -16,7 +16,15 @@ export default {
   props: {
     title: { type: String, default: "" },
     mainIcon: { type: String, default: "" },
-    optIcon: { type: String, default: "right" }
+    optIcon: { type: String, default: "right" },
+    to: { type: String, default: "" }
+  },
+  methods: {
+    clickEvent() {
+      if (this.to) {
+        this.$router.push({ path: this.to });
+      }
+    }
   }
 };
 </script>
