@@ -1,5 +1,7 @@
 <template>
-  <div>关于我们页面DEMO</div>
+  <div>
+    <gc-cell title="固定头部的head" to="/head/transHead" class="margint20 shadow"></gc-cell>
+  </div>
 </template>
 <script>
 export default {

@@ -45,18 +45,14 @@ let scroll = callback => {
    * */
   disabled = disabled => {
     if (disabled) {
-      body.dataset.overflowState =
-        window.getComputedStyle(body).overflow || "visible";
+      body.dataset.overflowState = window.getComputedStyle(body).overflow || "visible";
 
       body.style.overflow = "hidden";
     } else {
       body.style.overflow = body.dataset.overflowState || "visible";
     }
   },
-  scrollTarget,
-  body = document.body,
-  doc = document.documentElement,
-  tempTop = body.scrollTop;
+  body = document.body;
 /**
  * @summary     禁止页面滚动
  * @method
@@ -77,16 +73,7 @@ scroll.disabled = function(disabled) {
  * 测试获取滚动条信息的对象为 document.body 还是 document.documentElement
  * */
 
-body.scrollTop = tempTop + 1;
-
-if (body.scrollTop === tempTop + 1) {
-  // document.body 可用
-  scrollTarget = body;
-
-  body.scrollTop = tempTop;
-} else {
-  scrollTarget = doc;
-}
+body.scrollTop = body.scrollTop + 1;
 
 scroll.observe = observe;
 scroll.unobserve = unobserve;

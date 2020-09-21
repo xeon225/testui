@@ -1,0 +1,1 @@
+CyanMaple内置了开发常用的组件，这些组件被放置在/src/componnets文件夹中，其中global文件夹用于放置全局组件，async文件夹用于放置异步组件

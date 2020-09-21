@@ -108,9 +108,7 @@ class Listener extends Base {
           handlers;
 
         if (this._callbackList.has(target)) {
-          handlers = this._callbackList.get(target)[
-            Listener.IntersectionObserver
-          ];
+          handlers = this._callbackList.get(target)[Listener.IntersectionObserver];
 
           if (handlers && handlers.handlers) {
             handlers.handlers.with(target).line(
@@ -175,10 +173,7 @@ class Listener extends Base {
 
     targetConfig = this._callbackList.get(target);
 
-    if (
-      type !== Listener.IntersectionObserver ||
-      type !== Listener.MutationObserver
-    ) {
+    if (type !== Listener.IntersectionObserver || type !== Listener.MutationObserver) {
       key = this._getKey(type, capture);
     } else {
       key = type;
@@ -194,10 +189,7 @@ class Listener extends Base {
    * @return  {string}
    * */
   _getKey(type, capture) {
-    if (
-      type === Listener.IntersectionObserver ||
-      type === Listener.MutationObserver
-    ) {
+    if (type === Listener.IntersectionObserver || type === Listener.MutationObserver) {
       return type;
     }
 
@@ -299,10 +291,7 @@ class Listener extends Base {
       } else if (type === Listener.MutationObserver) {
         this._initMutationObserver();
         this._mutate$.observe(target, options);
-      } else if (
-        "addEventListener" in target &&
-        typeof target.addEventListener === "function"
-      ) {
+      } else if ("addEventListener" in target && typeof target.addEventListener === "function") {
         eventConfig.callback = function(...args) {
           handlers.with(this).line(...args);
         };
@@ -373,10 +362,7 @@ class Listener extends Base {
       this._intersect$.unobserve(target);
     } else if (type === Listener.MutationObserver) {
       this._mutate$.unobserve(target, options);
-    } else if (
-      "removeEventListener" in target &&
-      typeof target.removeEventListener === "function"
-    ) {
+    } else if ("removeEventListener" in target && typeof target.removeEventListener === "function") {
       target.removeEventListener(type, eventConfig.callback, options);
     }
 

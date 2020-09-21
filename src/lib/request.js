@@ -3,15 +3,8 @@ import qs from "qs";
 import _ from "lodash";
 import localData from "cyanmaple/src/maple/methods/local";
 import sessionData from "cyanmaple/src/maple/methods/session";
-const Axios = axios.create({
-  baseURL: "/",
-  timeout: 10000,
-  responseType: "json",
-  withCredentials: true,
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-  }
-});
+import cliConfig from "_config";
+const Axios = axios.create(cliConfig.axiosConfig);
 const CancelToken = axios.CancelToken;
 const requestMap = new Map();
 const requestData = new Map();
@@ -34,11 +27,7 @@ Axios.interceptors.request.use(
       resolve(config);
     }).then(config => {
       // 序列化
-      if (
-        config.method === "post" ||
-        config.method === "put" ||
-        config.method === "delete"
-      ) {
+      if (config.method === "post" || config.method === "put" || config.method === "delete") {
         config.data = qs.stringify(config.data);
       }
       return config;
@@ -109,15 +98,7 @@ function setCacheDate(key, data, level) {
 function getCacheDate(key) {
   return requestData.get(key) || sessionData(key) || localData(key);
 }
-const request = ({
-  url,
-  data = {},
-  method = "get",
-  useCache = "true",
-  testData,
-  testDelay = 0,
-  onError
-}) => {
+const request = ({ url, data = {}, method = "get", useCache = cliConfig.ajaxCache, testData, testDelay = 0, onError }) => {
   if (url) {
     const _keyString = qs.stringify({ url, method, data });
     let cacheData = getCacheDate(_keyString);
@@ -132,10 +113,7 @@ const request = ({
       ? new Promise(r => {
           _.delay(() => {
             r(testData);
-            window.maple.log(
-              `${url}测试数据`,
-              JSON.parse(JSON.stringify(testData))
-            );
+            window.maple.log(`${url}测试数据`, JSON.parse(JSON.stringify(testData)));
           }, testDelay);
         })
       : Axios({
