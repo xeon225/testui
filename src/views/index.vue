@@ -1,18 +1,26 @@
 <template>
-  <div>
+  <!-- <div>
     <img src="https://zhang-yue.oss-cn-beijing.aliyuncs.com/bingshan/1212.png" alt="" />
 
     <router-link :to="item.path" v-for="item in list" :key="item.title">
       <gc-cell :title="item.title" class="radius3 margin20">{{ item.sub }}</gc-cell>
     </router-link>
+  </div> -->
+  <div>
+    <div class="flex-container-col" style="height:100vh">
+      <div class="flex3 bg-red">1</div>
+      <div class="flex3 bg-green">2</div>
+      <div class="flex3 bg-blue">3</div>
+      <div class="flex1 bg-orange">4</div>
+    </div>
   </div>
 </template>
 <script>
 export default {
   mate: {
     headerConfig: {
-      title: "CyanMaple_Cli",
-      show: false
+      title: "tgfeUi",
+      show: true
     }
   },
   data() {
